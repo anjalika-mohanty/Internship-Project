@@ -1,0 +1,346 @@
+{% load static %}
+<!--
+=========================================================
+ Light Bootstrap Dashboard - v2.0.1
+=========================================================
+
+ Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard
+ Copyright 2019 Creative Tim (https://www.creative-tim.com)
+ Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE)
+
+ Coded by Creative Tim
+
+=========================================================
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+        {% include 'dashboard/head.html' %}
+ 
+ <body>
+        {% include 'dashboard/_navbar.html' %}   
+                <!-- End Navbar -->
+             <div class="content">
+                 <div class="container-fluid">
+                     <div class="row">
+                         <div class="col-md-8">
+                             <div class="card">
+                                 <div class="card-header">
+                                     <h4 class="card-title">Add Profile</h4>
+                                 </div>
+                                 <div class="card-body">
+                                     <form method="POST" action="{% url 'register' %}">
+                                         {% csrf_token %}
+                                         <div class="row">
+                                             <div class="col-md-5 pr-1">
+                                                 <div class="form-group">
+                                                     <label>Company </label>
+                                                     <input name="company" type="text" class="form-control"  >
+                                                 </div>
+                                             </div>
+                                             <div class="col-md-3 px-1">
+                                                 <div class="form-group">
+                                                     <label>Username</label>
+                                                     <input name="username" type="text" class="form-control" placeholder="Username" value="">
+                                                 </div>
+                                             </div>
+                                             <div class="col-md-4 pl-1">
+                                                 <div class="form-group">
+                                                     <label for="exampleInputEmail1">Email address</label>
+                                                     <input name="email" type="email" class="form-control" placeholder="Email">
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="row">
+                                             <div class="col-md-6 pr-1">
+                                                 <div class="form-group">
+                                                     <label>First Name</label>
+                                                     <input name="first_name" type="text" class="form-control" placeholder="Company" value="">
+                                                 </div>
+                                             </div>
+                                             <div class="col-md-6 pl-1">
+                                                 <div class="form-group">
+                                                     <label>Last Name</label>
+                                                     <input name="last_name" type="text" class="form-control" placeholder="Last Name" value="">
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="row">
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                    <label>Contact no</label>
+                                                    <input name="contact_no" type="text" class="form-control" placeholder="Company" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl-1">
+                                                <div class="form-group">
+                                                    <label>Mobile no</label>
+                                                    <input name="contact_no2" type="text" class="form-control" placeholder="Last Name" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                             <div class="col-md-12">
+                                                 <div class="form-group">
+                                                     <label>Address</label>
+                                                     <input name="address" type="text" class="form-control" placeholder="Office Address" value="">
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="row">
+                                             <div class="col-md-4 pr-1">
+                                                 <div class="form-group">
+                                                     <label>Country</label>
+                                              
+                                                     <select name="country" class="form-control" id="countySel" size="1">
+                                                            <option value="" disabled selected>Select Country</option>
+                                                            
+                                                            </select>
+                                                            
+                                                 </div>
+                                             </div>
+                                             <div class="col-md-4 px-1">
+                                                 <div class="form-group">
+                                                     <label>State</label>
+                                                     <script>
+                                                            var stateObject = {
+                                                            "India": { "Delhi": ["new Delhi", "North Delhi"],
+                                                            "Kerala": ["Thiruvananthapuram", "Palakkad"],
+                                                            "Goa": ["North Goa", "South Goa"],
+                                                            },
+                                                            "Australia": {
+                                                            "South Australia": ["Dunstan", "Mitchell"],
+                                                            "Victoria": ["Altona", "Euroa"]
+                                                            }, "Canada": {
+                                                            "Alberta": ["Acadia", "Bighorn"],
+                                                            "Columbia": ["Washington", ""]
+                                                            },
+                                                            }
+                                                            window.onload = function () {
+                                                            var countySel = document.getElementById("countySel"),
+                                                            stateSel = document.getElementById("stateSel"),
+                                                            districtSel = document.getElementById("districtSel");
+                                                            for (var country in stateObject) {
+                                                            countySel.options[countySel.options.length] = new Option(country, country);
+                                                            }
+                                                            countySel.onchange = function () {
+                                                            stateSel.length = 1; // remove all options bar first
+                                                            districtSel.length = 1; // remove all options bar first
+                                                            if (this.selectedIndex < 1) return; // done 
+                                                            for (var state in stateObject[this.value]) {
+                                                            stateSel.options[stateSel.options.length] = new Option(state, state);
+                                                            }
+                                                            }
+                                                            countySel.onchange(); // reset in case page is reloaded
+                                                            stateSel.onchange = function () {
+                                                            districtSel.length = 1; // remove all options bar first
+                                                            if (this.selectedIndex < 1) return; // done 
+                                                            var district = stateObject[countySel.value][this.value];
+                                                            for (var i = 0; i < district.length; i++) {
+                                                            districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+                                                            }
+                                                            }
+                                                            }
+                                                            </script>
+                                                           <select name="state" class="form-control" id="stateSel" size="1">
+                                                                <option value="" disabled selected>Please select Country first</option>
+                                                            
+                                                            </select>
+                                                                                                                    
+                                                 </div>
+                                                
+                                             </div>
+                                             <div class="col-md-4 pl-1">
+                                                 <div class="form-group">
+                                                     <label>district</label>
+                                                     <select name="district" class="form-control" id="districtSel" size="1">
+                                                            <option value="" selected="selected">Please select State first</option>
+                                                            </select><br>
+                                                 </div>
+                                             </div>
+                                             
+                                         </div>
+                                         <div class="row">
+                                                <div class="col-md-4 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Date of birth</label>
+                                                            <input type="date" id="start"  name="d_o_b"class="form-control" 
+                                                            value=""
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                <div class="col-md-4 pl-1">
+                                                        <div class="form-group">
+                                                            <label>joining date</label>
+                                                            <input type="date" id="start"  name="joining_date"class="form-control" 
+                                                            value="" required   
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Postal Code</label>
+                                                                <input name="p_code" type="number" class="form-control" placeholder="ZIP Code">
+                                                            </div>
+                                                        </div>
+                                         </div>
+                                        
+                                            
+                                         <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Upload Image</label>
+                                                       
+                                                        <p><input name="Image" type="file"  accept="image/*"  id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                                                        <p><label for="file" class="form-control" style="cursor: pointer;">Browse..</label></p>
+                                                        
+
+                                                        <script>
+                                                        var loadFile = function(event) {
+                                                            var image = document.getElementById('output');
+                                                            image.src = URL.createObjectURL(event.target.files[0]);
+                                                        };
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         <div class="row">
+                                             <div class="col-md-12">
+                                                 <div class="form-group">
+                                                     <label>About Employee</label>
+                                                     <textarea name="about" rows="4" cols="80" class="form-control" placeholder="Description" value=""></textarea>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <button type="submit" class="btn btn-info btn-fill pull-right">Submit Profile</button>
+                                         <div class="clearfix"></div>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                             <div class="card card-user">
+                                 <div class="card-image">
+                                     <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+                                 </div>
+                                 <div class="card-body">
+                                     <div class="author">
+                                         <a href="#">   <p><img id="output" class="avatar border-gray" width="200" /></p>
+                                             
+                                             <h5 class="title">default-avatar</h5>
+                                         </a>
+                                         <p class="description">
+                                             Empty
+                                         </p>
+                                     </div>
+                                     <p class="description text-center">
+                                        Empty
+                                         <br> Empty
+                                         <br> Empty
+                                     </p>
+                                 </div>
+                                 <hr>
+                                 <div class="button-container mr-auto ml-auto">
+                                     <button href="#" class="btn btn-simple btn-link btn-icon">
+                                         <i class="fa fa-facebook-square"></i>
+                                     </button>
+                                     <button href="#" class="btn btn-simple btn-link btn-icon">
+                                         <i class="fa fa-twitter"></i>
+                                     </button>
+                                     <button href="#" class="btn btn-simple btn-link btn-icon">
+                                         <i class="fa fa-google-plus-square"></i>
+                                     </button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             {% include 'dashboard/_footer.html' %}
+            </div>
+        </div>
+     <!--   -->
+     <!-- <div class="fixed-plugin">
+     <div class="dropdown show-dropdown">
+         <a href="#" data-toggle="dropdown">
+             <i class="fa fa-cog fa-2x"> </i>
+         </a>
+ 
+         <ul class="dropdown-menu">
+             <li class="header-title"> Sidebar Style</li>
+             <li class="adjustments-line">
+                 <a href="javascript:void(0)" class="switch-trigger">
+                     <p>Background Image</p>
+                     <label class="switch">
+                         <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
+                     </label>
+                     <div class="clearfix"></div>
+                 </a>
+             </li>
+             <li class="adjustments-line">
+                 <a href="javascript:void(0)" class="switch-trigger background-color">
+                     <p>Filters</p>
+                     <div class="pull-right">
+                         <span class="badge filter badge-black" data-color="black"></span>
+                         <span class="badge filter badge-azure" data-color="azure"></span>
+                         <span class="badge filter badge-green" data-color="green"></span>
+                         <span class="badge filter badge-orange" data-color="orange"></span>
+                         <span class="badge filter badge-red" data-color="red"></span>
+                         <span class="badge filter badge-purple active" data-color="purple"></span>
+                     </div>
+                     <div class="clearfix"></div>
+                 </a>
+             </li>
+             <li class="header-title">Sidebar Images</li>
+ 
+             <li class="active">
+                 <a class="img-holder switch-trigger" href="javascript:void(0)">
+                     <img src="../assets/img/sidebar-1.jpg" alt="" />
+                 </a>
+             </li>
+             <li>
+                 <a class="img-holder switch-trigger" href="javascript:void(0)">
+                     <img src="../assets/img/sidebar-3.jpg" alt="" />
+                 </a>
+             </li>
+             <li>
+                 <a class="img-holder switch-trigger" href="javascript:void(0)">
+                     <img src="..//assets/img/sidebar-4.jpg" alt="" />
+                 </a>
+             </li>
+             <li>
+                 <a class="img-holder switch-trigger" href="javascript:void(0)">
+                     <img src="../assets/img/sidebar-5.jpg" alt="" />
+                 </a>
+             </li>
+ 
+             <li class="button-container">
+                 <div class="">
+                     <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
+                 </div>
+             </li>
+ 
+             <li class="header-title pro-title text-center">Want more components?</li>
+ 
+             <li class="button-container">
+                 <div class="">
+                     <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
+                 </div>
+             </li>
+ 
+             <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
+ 
+             <li class="button-container">
+                 <button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
+                 <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
+             </li>
+         </ul>
+     </div>
+ </div>
+  -->
+ </body>
+
+ 
+ </html>
+ 

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+   <!-- Banner -->
+   <section id="banner">
+        <div class="inner">
+            <h1>BOURBATI TECHSOL AND CONSULTING PRIVATE LIMITED</h1>
+            <p>Daily Attendance System<br />
+            designed by <a href="#">Biplab swain</a> and released under the Creative Commons License.</p>
+        </div>
+        <video autoplay loop muted playsinline src="{% static 'images/banner.mp4' %}"></video>
+    </section>
+  
+    <iframe width='100%' height='100%' id='mapcanvas' src="https://maps.google.com/maps?width=100%&height=600&hl=en&coord=22.5764753,88.4306861&q=Amrit%20Tower%20EN%20Block%2C%20Sector%20V%2C%20Bidhannagar%20Kolkata%2C%20West%20Bengal%20700091%20India+(Bourbati%20techsol)&ie=UTF8&t=&z=14&iwloc=B&output=embed" frameborder='0' scrolling='no' marginheight='0' marginwidth='0'><div class='zxos8_gm'><a href='https://sites.google.com/site/12patternsmith/oneplus-7-pro-5g-deals'>5g model</a></div><div style='overflow:hidden;'><div id='gmap_canvas' style='height:100%;width:700px;'></div><div><small>Powered by <a href='https://www.embedgooglemap.co.uk'>Embed Google Map</a></small></div></iframe>
+{% endblock%}
